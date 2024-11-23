@@ -35,6 +35,17 @@ class Cat {
         intelligence: json["intelligence"],
         image: json["image"],
     );
+    
+    factory Cat.empty() => Cat(
+        id: "",
+        name: "",
+        origin: "",
+        description: "",
+        lifeSpan: "",
+        adaptability: 0,
+        intelligence: 0,
+        image: null,
+    );
 
     Map<String, dynamic> toMap() => {
         "id": id,

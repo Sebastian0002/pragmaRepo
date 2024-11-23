@@ -22,7 +22,7 @@ class CatInfoRepository extends CatInfoGateway{
         //do a bucle while idList still has data. 
         //This for be sure to get all images of all breeds, calling the less times possible at endpoint to get Images.
         while (idList.isNotEmpty) {
-          
+
           //cleaning the Id list and adjusting to pass at URL
           final String idsToSearch = 
                 idList.toString()
@@ -44,7 +44,6 @@ class CatInfoRepository extends CatInfoGateway{
             // one by one each element and add their corresponding Image.
             for (var e in response.data) {
               if(listImages.isEmpty){
-                e['image'] = null;
                 idList.remove(e['id']);
               }
               // As the response of Images endpoint gave me more than 1 image for a breed or could no gather all the images of breeds
@@ -68,6 +67,7 @@ class CatInfoRepository extends CatInfoGateway{
         for (var cat in response.data) {
           catList.add(Cat.fromMap(cat));
         }
+
       }  
     } on DioException catch (_) {
       throw Exception();

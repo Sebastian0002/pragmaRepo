@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CardGeneralInfo extends StatelessWidget {
-  const CardGeneralInfo({super.key, required this.onTap});
+  const CardGeneralInfo({
+    super.key, 
+    required this.onTap,
+    required this.breed,
+    required this.country,
+    required this.image,
+    required this.intelligence,
+    });
 
   final Function()? onTap;
+  final String breed;
+  final String country;
+  final int intelligence;
+  final String? image;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +33,7 @@ class CardGeneralInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Nombre raza", style: TextStyle(fontWeight: FontWeight.w500)),
+              Text("Breed: $breed", style: const TextStyle(fontWeight: FontWeight.w500)),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
@@ -37,18 +50,37 @@ class CardGeneralInfo extends StatelessWidget {
                 ),
                 child: GestureDetector(
                   onTap: onTap,
-                  child: const Text("Mas...", style: TextStyle(fontWeight: FontWeight.w500))),
+                  child: const Text("More...", style: TextStyle(fontWeight: FontWeight.w500))),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          Image.asset("assets/cat.png", width: 250, fit: BoxFit.fill),
+          image != null
+          ? ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: FadeInImage.memoryNetwork(
+              fadeInDuration: const Duration(milliseconds: 400),
+              placeholder: kTransparentImage,
+              image: image!,
+              height: 250,
+              width: 250,
+              fit: BoxFit.fill,
+            ),
+          )
+          :Image.asset("assets/not_found_image.png"),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("País de origen", style: TextStyle(fontWeight: FontWeight.w500)),
-              Text("inteligencia", style: TextStyle(fontWeight: FontWeight.w500)),
+              SizedBox(
+                width: 180,
+                child: Text(
+                  "Country: $country", 
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  )),
+              Text("Intelligence: $intelligence", style: const TextStyle(fontWeight: FontWeight.w500)),
             ],
           ),
         ],

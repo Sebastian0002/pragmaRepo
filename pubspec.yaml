@@ -7,11 +7,13 @@ environment:
   sdk: ^3.5.3
 
 dependencies:
+  card_loading: ^0.3.2
   dio: ^5.7.0
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.3
   provider: ^6.1.2
+  transparent_image: ^2.0.1
 
 dev_dependencies:
   flutter_test:

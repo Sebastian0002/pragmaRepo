@@ -1,8 +1,12 @@
 import 'package:cat_app/pages/pages.dart';
+import 'package:cat_app/provider/cat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(ChangeNotifierProvider.value(
+    value: CatProvider(),
+    child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
