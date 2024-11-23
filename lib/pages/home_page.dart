@@ -1,5 +1,4 @@
 import 'package:cat_app/domain/models/cat.dart';
-import 'package:cat_app/pages/widgets/card_info_loading.dart';
 import 'package:cat_app/pages/widgets/widgets.dart';
 import 'package:cat_app/provider/cat_provider.dart';
 import 'package:flutter/material.dart';
