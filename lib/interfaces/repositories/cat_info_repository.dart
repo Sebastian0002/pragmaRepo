@@ -40,16 +40,17 @@ class CatInfoRepository extends CatInfoGateway{
                   .replaceAll("[", "")
                   .replaceAll("]", "")
                   .replaceAll(" ", "");
-          final response = await dio.get("$api/images/search?limit=100&breed_ids=$idsToSearch&api_key=$token");
-          if(response.statusCode == 200){
-            if(response.data.isEmpty){
-              return {};
-            }
-            
-            for (var item in response.data) {
-              map.putIfAbsent(item['breeds'][0]['id'], ()=> item['url']);
-            }
-        }
+    
+    final response = await dio.get("$api/images/search?limit=100&breed_ids=$idsToSearch&api_key=$token");
+    if(response.statusCode == 200){
+      if(response.data.isEmpty){
+        return {};
+      }
+      
+      for (var item in response.data) {
+        map.putIfAbsent(item['breeds'][0]['id'], ()=> item['url']);
+      }
+    }
     return map;
     }
   }
