@@ -7,8 +7,13 @@ class CatUsecase {
   CatUsecase({required CatInfoGateway catInfoGateway}) : _catInfoGateway = catInfoGateway;
   final CatInfoGateway _catInfoGateway;
 
-  Future<List<Cat>> getCatInfo() async{
+
+  Future<(List<Cat>, List<String>)> getCatInfo() async{
     return await _catInfoGateway.getCatInfo();
+  }
+  
+  Future<Map<String, dynamic>> getCatImages({required List<String> idsList}) async{
+    return _catInfoGateway.getCatImages(idsList: idsList);
   }
 
 

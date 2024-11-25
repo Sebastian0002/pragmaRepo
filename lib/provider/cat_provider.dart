@@ -14,27 +14,63 @@ class CatProvider extends ChangeNotifier{
 
   bool _loading = false;
   bool get loading => _loading;
+  bool _loadingImages = false;
+  bool get loadingImages => _loadingImages;
 
   final List<Cat> _catList = [];
   List<Cat> get catList => _catList;
   final List<Cat> _fullCatList = [];
   final List<Cat> _filteredCatList = [];
+  
   late Cat _catSelected;
   Cat get catSelected => _catSelected;
+
+  List<String> _idsList = [];
 
   Future getInfoCats()async{
     _loading = true;
     notifyListeners();
     final catList = await _catUsecase.getCatInfo();
-    _fullCatList.addAll(catList);
+    _idsList = catList.$2;
+    _fullCatList.addAll(catList.$1);
     _catList.addAll(_fullCatList);
     _loading = false;
     notifyListeners();
+    
+
+    _loadingImages = true;
+    notifyListeners();
+    while (_idsList.isNotEmpty) {
+      await getImagesCat();
+      notifyListeners();
+    }
+    _loadingImages = false;
+    notifyListeners();
+
+  }
+  
+  Future getImagesCat ()async{
+    final catImagesMap = await _catUsecase.getCatImages(idsList: _idsList);
+    if(catImagesMap.isEmpty){
+      _idsList.clear();
+      return;
+    }
+    
+    catImagesMap.forEach((key, value){
+      final search = catList.where((obj) => obj.id == key);
+      if(search.isNotEmpty){
+        final Cat cat = catList.where((obj) => obj.id == key).single;
+        cat.setImage(value);
+        _idsList.remove(key);
+      }
+    });
   }
 
   void setCatSelected(Cat cat){
     _catSelected = cat;
   }
+
+
 
   void setFilterCat(String search) async{
     _catList.clear();

@@ -1,4 +1,7 @@
+import 'package:card_loading/card_loading.dart';
+import 'package:cat_app/provider/cat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class CardGeneralInfo extends StatelessWidget {
@@ -55,19 +58,8 @@ class CardGeneralInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          image != null
-          ? ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: FadeInImage.memoryNetwork(
-              fadeInDuration: const Duration(milliseconds: 400),
-              placeholder: kTransparentImage,
-              image: image!,
-              height: 250,
-              width: 250,
-              fit: BoxFit.fill,
-            ),
-          )
-          :Image.asset("assets/not_found_image.png"),
+          
+          _Image(image: image),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,6 +76,45 @@ class CardGeneralInfo extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _Image extends StatelessWidget {
+  const _Image({
+    required this.image,
+  });
+
+  final String? image;
+
+  @override
+  Widget build(BuildContext context) {
+    final CatProvider catProvider = context.watch<CatProvider>();
+    return SizedBox(
+      child:
+      catProvider.loadingImages
+      ?image != null
+      ? _imageCharged()
+      :ClipRRect(
+        borderRadius: BorderRadius.circular(5),
+        child: const CardLoading(height: 250, width: 250))
+      : image != null
+      ? _imageCharged()
+      : Image.asset("assets/not_found_image.png"),
+    );
+  }
+
+  ClipRRect _imageCharged() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: FadeInImage.memoryNetwork(
+        fadeInDuration: const Duration(milliseconds: 400),
+        placeholder: kTransparentImage,
+        image: image!,
+        height: 250,
+        width: 250,
+        fit: BoxFit.fill,
       ),
     );
   }

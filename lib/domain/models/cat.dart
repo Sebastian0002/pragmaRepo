@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Cat {
+class Cat with Images{
     final String id;
     final String name;
     final String origin;
@@ -8,7 +8,6 @@ class Cat {
     final String lifeSpan;
     final int adaptability;
     final int intelligence;
-    final String? image;
 
     Cat({
         required this.id,
@@ -18,7 +17,6 @@ class Cat {
         required this.lifeSpan,
         required this.adaptability,
         required this.intelligence,
-        required this.image,
     });
 
     factory Cat.fromJson(String str) => Cat.fromMap(json.decode(str));
@@ -33,7 +31,6 @@ class Cat {
         lifeSpan: json["life_span"],
         adaptability: json["adaptability"],
         intelligence: json["intelligence"],
-        image: json["image"],
     );
     
     factory Cat.empty() => Cat(
@@ -44,7 +41,6 @@ class Cat {
         lifeSpan: "",
         adaptability: 0,
         intelligence: 0,
-        image: null,
     );
 
     Map<String, dynamic> toMap() => {
@@ -58,3 +54,15 @@ class Cat {
         "image": image,
     };
 }
+
+mixin Images {
+    String? image;
+
+  void setImage( String image ){
+    this.image = image;
+  }
+
+}
+
+
+
