@@ -41,12 +41,17 @@ class CatInfoRepository extends CatInfoGateway{
                   .replaceAll("]", "")
                   .replaceAll(" ", "");
     
+
+    //Get Images with the breed_ids provided
     final response = await dio.get("$api/images/search?limit=100&breed_ids=$idsToSearch&api_key=$token");
+    
     if(response.statusCode == 200){
+      //When data is empty means that not founded any information of that breed in the search, 
+      //then return an empty map
       if(response.data.isEmpty){
         return {};
       }
-      
+
       for (var item in response.data) {
         map.putIfAbsent(item['breeds'][0]['id'], ()=> item['url']);
       }
