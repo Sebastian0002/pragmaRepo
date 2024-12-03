@@ -55,6 +55,8 @@ class Cat with Images{
     };
 }
 
+//This mixin is used to respect the SOLID principles specifically the Open/closed 
+//and is used to insert the image to an instance of the cat class without modify this
 mixin Images {
     String? image;
 

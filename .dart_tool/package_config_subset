@@ -174,10 +174,6 @@ yaml
 2.19
 file:///Users/jhoann02/.pub-cache/hosted/pub.dev/yaml-3.1.2/
 file:///Users/jhoann02/.pub-cache/hosted/pub.dev/yaml-3.1.2/lib/
-cat_app
-3.5
-file:///Users/jhoann02/cat_app/
-file:///Users/jhoann02/cat_app/lib/
 sky_engine
 3.2
 file:///Users/jhoann02/development/flutter/bin/cache/pkg/sky_engine/
@@ -194,4 +190,8 @@ flutter_web_plugins
 3.2
 file:///Users/jhoann02/development/flutter/packages/flutter_web_plugins/
 file:///Users/jhoann02/development/flutter/packages/flutter_web_plugins/lib/
+cat_app
+3.5
+file:///Users/jhoann02/pragmaRepo/
+file:///Users/jhoann02/pragmaRepo/lib/
 2
