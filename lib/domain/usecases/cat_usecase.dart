@@ -1,11 +1,11 @@
 
-import 'package:cat_app/domain/gateways/cat_info_gateway.dart';
+import 'package:cat_app/interfaces/cat_info_interface.dart';
 import 'package:cat_app/domain/models/cat.dart';
 
 class CatUsecase {
 
-  CatUsecase({required CatInfoGateway catInfoGateway}) : _catInfoGateway = catInfoGateway;
-  final CatInfoGateway _catInfoGateway;
+  CatUsecase({required CatInfoInterface catInfoGateway}) : _catInfoGateway = catInfoGateway;
+  final CatInfoInterface _catInfoGateway;
 
 
   Future<(List<Cat>, List<String>)> getCatInfo() async{

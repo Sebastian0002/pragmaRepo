@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cat_app/domain/models/cat.dart';
 import 'package:cat_app/domain/usecases/cat_usecase.dart';
-import 'package:cat_app/interfaces/repositories/cat_info_repository.dart';
+import 'package:cat_app/domain/repositories/cat_info_repository.dart';
 import 'package:flutter/material.dart';
 
 class CatProvider extends ChangeNotifier{

@@ -1,9 +1,10 @@
 import 'package:cat_app/constants/environment.dart';
-import 'package:cat_app/domain/gateways/cat_info_gateway.dart';
+import 'package:cat_app/interfaces/cat_info_interface.dart';
 import 'package:cat_app/domain/models/cat.dart';
 import 'package:dio/dio.dart';
 
-class CatInfoRepository extends CatInfoGateway {
+class CatInfoRepository implements CatInfoInterface {
+
   @override
   Future<(List<Cat>, List<String>)> getCatInfo() async {
     final dio = Dio();
